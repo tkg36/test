@@ -22,12 +22,13 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
           
-      - name: Build and push
-        uses: docker/build-push-action@v4
-        with:
-          context: .
-          push: true
-          tags: mars-rover-vision:latest
+      - name: Build to Docker Hub
+        run:
+          docker build -t tkg36/mars-rover-vision:latest .
+
+      - name: Push to Docker Hub
+        run:
+          docker push tkg36/mars-rover-vision:latest
           
       - name: deploying
         uses: appleboy/ssh-action@v0.1.8
@@ -37,7 +38,7 @@ jobs:
           password: ${{ secrets.SSH_PASSWORD }}
           port: ${{ secrets.SSH_PORT }}
           script: |
-            docker image pull mars-rover-vision:latest
-            docker container stop flask
-            docker container rm flask
-            docker container run -d --name flask -p 80:5432 mars-rover-vision
+            docker pull tkg36/mars-rover-vision:latest
+            docker stop mars-container
+            docker container rm mars-container
+            docker container run -d --name mars-container -p 5432:5432 tkg36/mars-rover-vision:latest
