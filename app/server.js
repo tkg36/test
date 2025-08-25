@@ -10,7 +10,7 @@ let apiKey = apiFile["api_key"];
 let baseUrl = apiFile["api_url"];
 const path = require('path');
 let port = 3000;
-let hostname = "localhost";
+let hostname = "0.0.0.0";
 
 
 const { createServer } = require("node:http");
