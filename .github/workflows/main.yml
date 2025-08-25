@@ -27,7 +27,7 @@ jobs:
         with:
           context: .
           push: true
-          tags: MARS-Rover-Vision:latest
+          tags: mars-rover-vision:latest
           
       - name: deploying
         uses: appleboy/ssh-action@v0.1.8
@@ -37,7 +37,7 @@ jobs:
           password: ${{ secrets.SSH_PASSWORD }}
           port: ${{ secrets.SSH_PORT }}
           script: |
-            docker image pull MARS-Rover-Vision:latest
+            docker image pull mars-rover-vision:latest
             docker container stop flask
             docker container rm flask
-            docker container run -d --name flask -p 80:5000 MARS-Rover-Vision
+            docker container run -d --name flask -p 80:5432 mars-rover-vision
