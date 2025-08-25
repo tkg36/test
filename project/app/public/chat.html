@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Just Chatting</title>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+
+      body {
+        margin: 0;
+        padding: 0;
+        background: transparent;
+      }
+
+      .chat-widget {
+        width: 400px;
+        height: 500px;
+        overflow-y: auto;
+        padding: 12px;
+        font-family: 'Fredoka One', cursive;
+        background-color: rgba(0, 0, 0, 0.6);
+        border-radius: 12px;
+        box-shadow: 0 0 10px #000;
+        color: white;
+      }
+
+      .chat__item {
+        margin-bottom: 12px;
+        padding: 8px 12px;
+        border-radius: 10px;
+        box-shadow: 0 0 5px rgba(255, 255, 255, 0.1);
+        background-color: rgba(var(--user-color-rgb), 0.15);
+        border: 2px dashed rgba(var(--user-color-rgb), 0.4);
+      }
+
+      .chat__user {
+        font-weight: bold;
+        color: var(--user-color);
+        display: block;
+        margin-bottom: 4px;
+      }
+
+      .chat__message {
+        color: var(--user-color);
+        font-size: 1rem;
+      }
+
+      .chat__emote {
+        height: 1.2em;
+        vertical-align: middle;
+      }
+    </style>
+  </head>
+  <body>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="chat.js"></script>
+
+    <!-- Chat Widget -->
+    <div class="content-container">
+      <div class="chat-widget"></div>
+      <form id="form" action="">
+        <input id="input" autocomplete="off" />
+        <button>Send</button>
+      </form>
+    </div>
+  </body>
+</html>
