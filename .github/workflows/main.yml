@@ -36,9 +36,9 @@ jobs:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
           password: ${{ secrets.SSH_PASSWORD }}
-          port: ${{ secrets.SSH_PORT }}
+          port: 3000
           script: |
             docker pull tkg36/mars-rover-vision:latest
             docker stop mars-container
-            docker container rm mars-container
-            docker container run -d --name mars-container -p 5432:5432 tkg36/mars-rover-vision:latest
+            docker rm mars-container
+            docker run -d --name mars-container -p 3000:3000 tkg36/mars-rover-vision:latest
