@@ -1,10 +1,6 @@
 name: Docker Image build
 
 on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
   worfkflow_dispatch: null
 
 jobs:
