@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Introduction • NASA Rover Vision</title>
+  <style>
+    :root{
+      --bg:#000;
+      --ink:#fff;
+      --ink-dim:rgba(255,255,255,.75);
+      --accent:#4cc9f0;
+      --accent-2:#0b3d91; /* NASA blue */
+      --chip:#111a;
+      --card:#111d;
+      --border:rgba(255,255,255,.18);
+      --shadow:0 10px 30px rgba(0,0,0,.35);
+      --radius:14px;
+    }
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.6}
+    .banner{position:fixed;inset:0 auto auto 0;height:60px;background:var(--accent-2);display:flex;align-items:center;padding:0 16px;z-index:10;box-shadow:var(--shadow)}
+    .banner h1{margin:0;font-size:18px;letter-spacing:.4px}
+    .content{max-width:1100px;margin:0 auto;padding:88px 20px 60px}
+    a{color:var(--accent)}
+    section{padding:56px 0;border-bottom:1px solid var(--border)}
+    h2{margin:0 0 20px;color:var(--accent);font-size:28px}
+    p{margin:8px 0 16px}
+    .lead{color:var(--ink-dim)}
+    .chips{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 0}
+    .chip{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--border);background:var(--chip);padding:6px 10px;border-radius:999px;font-size:12px}
+    .chip .dot{width:7px;height:7px;border-radius:50%}
+    .dot.curiosity{background:#9ad0f5}
+    .dot.percy{background:#f5c49a}
+    .dot.opp{background:#9af5b1}
+    .dot.spirit{background:#d2a6f9}
+
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
+    .card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow)}
+    .card h3{margin:0 0 10px}
+    .muted{color:var(--ink-dim);font-size:14px}
+
+    .feature-list{list-style:none;padding:0;margin:0;display:grid;gap:14px}
+    .feature{display:flex;gap:14px;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:16px}
+    .tag{font-weight:700;min-width:28px;text-align:center}
+
+    .code{background:#0a0a0a;border:1px solid var(--border);border-radius:10px;padding:12px;overflow:auto}
+
+    .toc{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0 0}
+    .toc a{border:1px solid var(--border);background:var(--chip);padding:8px 12px;border-radius:999px;text-decoration:none}
+
+    details{border:1px dashed var(--border);border-radius:10px;padding:10px 12px;background:#0a0a0a}
+    summary{cursor:pointer;color:var(--ink-dim)}
+
+    .cta-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:10px}
+    .btn{appearance:none;border:1px solid var(--border);background:transparent;color:#fff;padding:10px 16px;border-radius:10px;cursor:pointer}
+    .btn.primary{background:var(--accent-2)}
+
+    footer{padding:30px 20px;color:var(--ink-dim);text-align:center}
+  </style>
+</head>
+<body>
+  <div class="banner"><h1>Introduction — NASA Rover Vision</h1></div>
+  <main class="content">
+
+    <!-- Quick Nav -->
+    <section id="start">
+      <p class="lead">Welcome! This page explains how to use the site, what each Mars rover and camera does, what a <em>Sol</em> is, and which NASA APIs we use.</p>
+      <div class="toc">
+        <a href="#manual">User Guide</a>
+        <a href="#rovers">Rovers</a>
+        <a href="#cameras">Cameras</a>
+        <a href="#sol">What’s a Sol?</a>
+        <a href="#api">NASA API Reference</a>
+        <a href="#faq">FAQ & Tips</a>
+      </div>
+      <div class="cta-row">
+        <button class="btn" onclick="location.href='home.html'">⬅ Back to Home</button>
+        <button class="btn primary" onclick="location.href='roverCam.html'">🚀 Try Explore Mars</button>
+      </div>
+    </section>
+
+    <section id="manual">
+      <h2>How to Use This Website</h2>
+      <ul class="feature-list">
+        <li class="feature">
+          <div class="tag">1</div>
+          <div>
+            <strong>Scene Switching</strong><br />
+            Choose your <em>Rover</em>, <em>Sol Day</em>, and <em>Camera</em> to switch scenes. We’ll fetch the matching images and render the chosen view.
+          </div>
+        </li>
+        <li class="feature">
+          <div class="tag">2</div>
+          <div>
+            <strong>Live Chat (up to 10 users)</strong><br />
+            Discuss discoveries in real-time while you browse the same (or different) scenes.
+          </div>
+        </li>
+        <li class="feature">
+          <div class="tag">3</div>
+          <div>
+            <strong>Voting</strong><br />
+            After everyone picks their rover/sol/camera, cast a vote. The top-voted combination will be shown to all users.
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <!-- Section 2a: Rovers -->
+    <section id="rovers">
+      <h2>Rovers</h2>
+      <div class="grid">
+        <article class="card">
+          <h3>Curiosity (MSL)</h3>
+          <p>On Mars since 2012, exploring Gale Crater to study habitability and geology.</p>
+          <p class="muted">Key cams: Mastcam, Navcam, Hazcam, ChemCam, MAHLI, MARDI.</p>
+        </article>
+        <article class="card">
+          <h3>Perseverance (Mars 2020)</h3>
+          <p>Landed 2021 in Jezero Crater to seek signs of ancient life and cache samples.</p>
+          <p class="muted">Key cams: Mastcam‑Z, Navcam, Hazcam, SuperCam, WATSON, SkyCam.</p>
+        </article>
+        <article class="card">
+          <h3>Opportunity (MER‑B) — Legacy</h3>
+          <p>2004–2018 in Meridiani Planum; set distance records and transformed our view of Martian surface processes.</p>
+          <p class="muted">Key cams: Pancam, Navcam, Hazcam, Microscopic Imager (MI).</p>
+        </article>
+        <article class="card">
+          <h3>Spirit (MER‑A) — Legacy</h3>
+          <p>2004–2010 in Gusev Crater; discovered evidence of past water‑altered rocks before becoming embedded in soft soil.</p>
+          <p class="muted">Key cams: Pancam, Navcam, Hazcam, Microscopic Imager (MI).</p>
+        </article>
+      </div>
+      <div class="chips" aria-label="Legend">
+        <span class="chip"><span class="dot curiosity"></span> Curiosity</span>
+        <span class="chip"><span class="dot percy"></span> Perseverance</span>
+        <span class="chip"><span class="dot opp"></span> Opportunity</span>
+        <span class="chip"><span class="dot spirit"></span> Spirit</span>
+      </div>
+    </section>
+
+    <!-- Section 2b: Cameras (NEW) -->
+    <section id="cameras">
+      <h2>Cameras</h2>
+      <p class="lead">Below is a friendly catalog of cameras you can select. Each card lists what the camera is best for and which rovers use it.</p>
+
+      <div class="grid">
+        <article class="card">
+          <h3>Mastcam / Mastcam‑Z</h3>
+          <p>Primary color imaging from the rover mast. Great for panoramas and science targets. <em>Mastcam‑Z</em> on Perseverance adds optical zoom for stereo and long‑range detail.</p>
+          <div class="chips">
+            <span class="chip"><span class="dot curiosity"></span> Curiosity (Mastcam)</span>
+            <span class="chip"><span class="dot percy"></span> Perseverance (Mastcam‑Z)</span>
+          </div>
+          <p class="muted">Typical use: sweeping landscapes, outcrop context, zoomed target frames (‑Z).</p>
+        </article>
+
+        <article class="card">
+          <h3>Navcam (Navigation Cameras)</h3>
+          <p>Wide field, usually monochrome engineering cameras used to plan drives and visualize terrain around the rover.</p>
+          <div class="chips">
+            <span class="chip"><span class="dot curiosity"></span> Curiosity</span>
+            <span class="chip"><span class="dot percy"></span> Perseverance</span>
+            <span class="chip"><span class="dot opp"></span> Opportunity</span>
+          </div>
+          <p class="muted">Typical use: rover navigation, 3D terrain mapping, route planning.</p>
+        </article>
+
+        <article class="card">
+          <h3>Hazcam (Front/Rear)</h3>
+          <p>Low‑mounted hazard avoidance cameras with very wide lenses to spot obstacles near the wheels.</p>
+          <div class="chips">
+            <span class="chip"><span class="dot curiosity"></span> Curiosity</span>
+            <span class="chip"><span class="dot percy"></span> Perseverance</span>
+            <span class="chip"><span class="dot opp"></span> Opportunity</span>
+          </div>
+          <p class="muted">Typical use: checking wheel paths, safe arm placements, close‑up terrain.</p>
+        </article>
+
+        <article class="card">
+          <h3>ChemCam / SuperCam</h3>
+          <p>Laser spectroscopy instruments with imaging for remote sensing. Curiosity’s <em>ChemCam</em> and Perseverance’s <em>SuperCam</em> analyze rock chemistry from a distance.</p>
+          <div class="chips">
+            <span class="chip"><span class="dot curiosity"></span> Curiosity (ChemCam)</span>
+            <span class="chip"><span class="dot percy"></span> Perseverance (SuperCam)</span>
+          </div>
+          <p class="muted">Typical use: target scouting, composition checks, fine feature context images.</p>
+        </article>
+
+        <article class="card">
+          <h3>MAHLI / WATSON</h3>
+          <p>Close‑up imagers on the rover arm for macro detail. Curiosity uses <em>MAHLI</em>; Perseverance uses <em>WATSON</em> (part of SHERLOC) for fine textures and grain structures.</p>
+          <div class="chips">
+            <span class="chip"><span class="dot curiosity"></span> Curiosity (MAHLI)</span>
+            <span class="chip"><span class="dot percy"></span> Perseverance (WATSON)</span>
+          </div>
+          <p class="muted">Typical use: close‑ups of rock layers, abrasion patches, drilled cores.</p>
+        </article>
+
+        <article class="card">
+          <h3>MARDI / EDL & SkyCam</h3>
+          <p><em>MARDI</em> (Curiosity) captured descent imagery. Perseverance flight/entry cameras (EDL set) recorded landing sequences; <em>SkyCam</em> looks upward to observe the atmosphere.</p>
+          <div class="chips">
+            <span class="chip"><span class="dot curiosity"></span> Curiosity (MARDI)</span>
+            <span class="chip"><span class="dot percy"></span> Perseverance (EDL, SkyCam)</span>
+          </div>
+          <p class="muted">Typical use: descent footage, sky/atmosphere monitoring.</p>
+        </article>
+
+        <article class="card">
+          <h3>Pancam</h3>
+          <p>Panoramic color stereo imaging on the Mars Exploration Rovers. Produced iconic, scientifically calibrated panoramas.</p>
+          <div class=\"chips\">
+            <span class=\"chip\"><span class=\"dot opp\"></span> Opportunity</span>
+            <span class=\"chip\"><span class=\"dot spirit\"></span> Spirit</span>
+          </div>
+          <p class="muted">Typical use: color panoramas, science target context on MER missions.</p>
+        </article>
+
+        <article class="card">
+          <h3>Microscopic Imager (MI)</h3>
+          <p>Hand‑lens style imager on the MER arm for extreme close‑ups of rock/soil textures.</p>
+          <div class=\"chips\">
+            <span class=\"chip\"><span class=\"dot opp\"></span> Opportunity</span>
+            <span class=\"chip\"><span class=\"dot spirit\"></span> Spirit</span>
+          </div>
+          <p class="muted">Typical use: grain sizes, laminations, fine sediment structures.</p>
+        </article>
+      </div>
+
+      <details style="margin-top:16px">
+        <summary>About camera names vs API codes</summary>
+        <p class="muted">In menus you’ll see friendly names. NASA APIs sometimes use short camera codes (e.g., <code>FHAZ</code>, <code>RHAZ</code>, <code>MAST</code>, <code>NAVCAM</code>, <code>CHEMCAM</code>, <code>MAHLI</code>, <code>MARDI</code>, <code>PANCAM</code>, <code>MINITES</code>). We map selections for you, so you can pick by name and we’ll request the correct API camera.</p>
+      </details>
+    </section>
+
+    <!-- Section 2c: What is a Sol? -->
+    <section id="sol">
+      <h2>What’s a Sol?</h2>
+      <p>A <strong>Sol</strong> is a Martian day—about 24 hours and 39 minutes. NASA organizes rover images by Sol count starting from each rover’s landing day. When you pick a Sol here, we query images taken on that rover’s Sol N.</p>
+    </section>
+
+    <!-- Section 3: NASA API Reference -->
+    <section id="api">
+      <h2>NASA API Reference</h2>
+      <p>We use the <strong>Mars Rover Photos API</strong> from <a href="https://api.nasa.gov/" target="_blank" rel="noopener">api.nasa.gov</a>. Core pattern:</p>
+      <div class="code">
+        <pre style="margin:0">GET https://api.nasa.gov/mars-photos/api/v1/rovers/{rover}/photos?sol={N}&camera={CAM}&api_key={KEY}</pre>
+      </div>
+      <p class="muted" style="margin-top:10px">Examples (rover names are lowercase): <code>curiosity</code>, <code>opportunity</code>, <code>spirit</code>, and (where supported) <code>perseverance</code>. You can also use <code>earth_date=YYYY-MM-DD</code> instead of <code>sol</code>.</p>
+    </section>
+
+    <!-- Section 4: FAQ & Tips -->
+    <section id="faq">
+      <h2>FAQ & Tips</h2>
+      <div class="grid">
+        <article class="card">
+          <h3>Why do some days show no images?</h3>
+          <p>Not every camera captures images every Sol, and some Sols are engineering‑heavy or have data gaps. Try adjacent Sols or a different camera.</p>
+        </article>
+        <article class="card">
+          <h3>How does voting break ties?</h3>
+          <p>If there’s a tie, we prioritize the most recent Sol among the tied options. If still tied, we fallback to Mastcam/Mastcam‑Z for the best scenic context.</p>
+        </article>
+        <article class="card">
+          <h3>Live chat limits</h3>
+          <p>To keep things smooth, up to 10 users can chat in the same room. If full, please try again in a bit or open a new room.</p>
+        </article>
+      </div>
+    </section>
+
+    <div class="cta-row" style="margin-top:26px">
+      <button class="btn" onclick="location.href='home.html'">⬅ Back to Home</button>
+      <button class="btn primary" onclick="location.href='roverCam.html'">🚀 Explore Mars Now</button>
+      <button class="btn" onclick="location.href='introduction.html#cameras'">📷 Jump to Cameras</button>
+    </div>
+
+  </main>
+  <footer>© 2025 NASA Rover Vision Project • Powered by NASA Open APIs</footer>
+</body>
+</html>
